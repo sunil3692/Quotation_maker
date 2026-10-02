@@ -26,6 +26,9 @@ android {
             storePassword = System.getenv("QM_STORE_PASSWORD") ?: "qmaker2026"
             keyAlias = System.getenv("QM_KEY_ALIAS") ?: "quotationmaker"
             keyPassword = System.getenv("QM_KEY_PASSWORD") ?: "qmaker2026"
+            // Sign with both old (v1) and new (v2) schemes so every installer accepts it
+            enableV1Signing = true
+            enableV2Signing = true
         }
     }
 
