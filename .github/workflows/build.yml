@@ -1,0 +1,80 @@
+name: Build APK and website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download PDF libraries and fonts (for offline use)
+        run: bash scripts/fetch-assets.sh
+
+      - name: Put the web app inside the Android app
+        run: |
+          rm -rf android/app/src/main/assets/www
+          mkdir -p android/app/src/main/assets
+          cp -r web android/app/src/main/assets/www
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
+      - name: Build APK
+        working-directory: android
+        run: gradle assembleRelease --no-daemon --stacktrace
+
+      - name: Rename APK
+        run: cp android/app/build/outputs/apk/release/app-release.apk QuotationMaker.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: QuotationMaker-apk
+          path: QuotationMaker.apk
+
+      - name: Publish APK as a release (direct download link)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: कोटेशन मेकर v1.0.${{ github.run_number }}
+          body: |
+            Android ऐप: नीचे QuotationMaker.apk डाउनलोड करके इंस्टॉल करें।
+            Commit: ${{ github.sha }}
+          files: QuotationMaker.apk
+          make_latest: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+  website:
+    needs: build
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - id: deploy
+        uses: actions/deploy-pages@v4

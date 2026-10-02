@@ -1,0 +1,17 @@
+{
+  "name": "कोटेशन मेकर",
+  "short_name": "कोटेशन",
+  "description": "277 बिज़नेस के टेम्पलेट से कोटेशन बनाएं और PDF शेयर करें",
+  "lang": "hi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#eef2ef",
+  "theme_color": "#0e6a4e",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

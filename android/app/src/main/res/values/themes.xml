@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.QuotationMaker" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">#0E6A4E</item>
+        <item name="colorPrimaryDark">#0B5440</item>
+        <item name="colorAccent">#0E6A4E</item>
+        <item name="android:statusBarColor">#0E6A4E</item>
+        <item name="android:windowBackground">@color/app_bg</item>
+    </style>
+    <color name="app_bg">#EEF2EF</color>
+</resources>
