@@ -207,6 +207,10 @@ h3.sub{font-size:.9rem;color:var(--muted);margin:14px 0 8px;font-weight:600}
 .q table.tt{border-collapse:collapse;min-width:260px;font-variant-numeric:tabular-nums}
 .q table.tt td{padding:4px 8px}
 .q table.tt td:last-child{text-align:right}
+.q table.tt tr.tg td{font-weight:700;border-top:1px solid #d5d9dd}
+.q table.it th.c{white-space:nowrap}
+.q .gnote{font-size:10.5px;color:#5c646b;margin:4px 0 0}
+.item .gamt{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .q table.tt tr.g td{border-top:2px solid var(--qc);font-weight:700;font-size:15px;color:var(--qc);padding-top:7px}
 .q h4{margin:20px 0 6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--qc)}
 .q ol{margin:0;padding-left:18px}
@@ -467,7 +471,7 @@ function calc(){
   let sub=0;S.items.forEach(i=>{i._a=num(i.qty)*num(i.rate);sub+=i._a});
   const disc=Math.min(num(S.opts.discount),sub);const f=sub?(sub-disc)/sub:0;
   const groups={};let tax=0;
-  if(S.opts.gstOn)S.items.forEach(i=>{const g=num(i.gst);if(g>0){const t=i._a*f*g/100;groups[g]=(groups[g]||0)+t;tax+=t}});
+  S.items.forEach(i=>{const g=S.opts.gstOn?num(i.gst):0;i._tv=i._a*f;i._g=i._tv*g/100;i._t=i._tv+i._g;if(g>0){groups[g]=(groups[g]||0)+i._g;tax+=i._g}});
   const other=num(S.opts.freight);const raw=sub-disc+tax+other;const total=Math.round(raw);
   return {sub,disc,groups,tax,other,round:total-raw,total};
 }
@@ -500,12 +504,14 @@ function renderDoc(){
   else if(L===4)head=`<table class="bx"><tr><td colspan="2" class="c">${logo?`<div>${logo.replace('<img','<img style="width:56px;height:56px;object-fit:contain"')}</div>`:''}<h3>${name}</h3>${sp(esc(sl.addr))}${sp([contact,gstl].filter(Boolean).join('  ·  '))}</td></tr><tr><td colspan="2" class="ttl">QUOTATION</td></tr><tr><td style="width:58%">${tob}</td><td>${meta.map(r=>`<div class="ml"><em>${r[0]}</em><span>${r[1]}</span></div>`).join('')}</td></tr></table>`;
   else if(L===5)head=`<div class="mn"><div class="seller">${logo}<div><h3>${name}</h3>${sp(esc(sl.addr))}${sp([contact,gstl].filter(Boolean).join('  ·  '))}</div></div><div class="lbl">Quotation</div></div><div class="two"><div>${tob}</div>${mt}</div>`;
   else head=`<div class="band"><div class="seller">${logo}<div><h3>${name}</h3>${sp(esc(sl.addr))}${sp(contact)}${sp(gstl)}</div></div><div class="qt"><div class="lbl">QUOTATION</div>${mt.replace('class="mt"','')}</div></div><div class="two"><div>${tob}</div></div>`;
-  const rows=S.items.map((i,k)=>`<tr><td class="c">${k+1}</td><td><b>${esc(i.name)||'&nbsp;'}</b>${i.desc?`<div class="d">${esc(i.desc)}</div>`:''}</td><td class="r">${esc(i.qty)}</td><td class="c">${esc(i.unit)}</td><td class="r">${money(num(i.rate))}</td>${gst?`<td class="c">${num(i.gst)}%</td>`:''}<td class="r">${money(i._a)}</td></tr>`).join('');
+  const rows=S.items.map((i,k)=>`<tr><td class="c">${k+1}</td><td><b>${esc(i.name)||'&nbsp;'}</b>${i.desc?`<div class="d">${esc(i.desc)}</div>`:''}</td><td class="r">${esc(i.qty)}</td><td class="c">${esc(i.unit)}</td><td class="r">${money(num(i.rate))}</td><td class="r">${money(i._a)}</td>${gst?`<td class="c">${num(i.gst)}%</td><td class="r">${money(i._g)}</td><td class="r"><b>${money(i._t)}</b></td>`:''}</tr>`).join('');
   let tt=`<tr><td>Sub Total</td><td>${money(c.sub)}</td></tr>`;
   if(c.disc)tt+=`<tr><td>Less: Discount</td><td>− ${money(c.disc)}</td></tr>`;
+  if(c.disc&&c.tax)tt+=`<tr><td>Taxable Value</td><td>${money(c.sub-c.disc)}</td></tr>`;
   Object.keys(c.groups).sort((x,y)=>x-y).forEach(g=>{const v=c.groups[g];
     if(S.opts.igst)tt+=`<tr><td>IGST @ ${g}%</td><td>${money(v)}</td></tr>`;
     else tt+=`<tr><td>CGST @ ${g/2}%</td><td>${money(v/2)}</td></tr><tr><td>SGST @ ${g/2}%</td><td>${money(v/2)}</td></tr>`;});
+  if(c.tax)tt+=`<tr class="tg"><td>Total GST</td><td>${money(c.tax)}</td></tr>`;
   if(c.other)tt+=`<tr><td>Freight / Installation</td><td>${money(c.other)}</td></tr>`;
   if(Math.abs(c.round)>=0.005)tt+=`<tr><td>Round Off</td><td>${c.round>0?'+':'−'} ${money(Math.abs(c.round))}</td></tr>`;
   tt+=`<tr class="g"><td>Grand Total (₹)</td><td>${money(c.total)}</td></tr>`;
@@ -515,7 +521,8 @@ function renderDoc(){
     ${head}
     ${S.meta.subject?`<p class="subj">Subject: ${esc(S.meta.subject)}</p>`:''}
     <p class="intro">${INTROS[L]}</p>
-    <table class="it"><thead><tr><th class="c" style="width:30px">${L===4?'S.No.':'#'}</th><th>${L===4?'Particulars':'Description'}</th><th class="r">Qty</th><th class="c">Unit</th><th class="r">Rate (₹)</th>${gst?'<th class="c">GST</th>':''}<th class="r">Amount (₹)</th></tr></thead><tbody>${rows}</tbody></table>
+    <table class="it"><thead><tr><th class="c" style="width:30px">${L===4?'S.No.':'#'}</th><th>${L===4?'Particulars':'Description'}</th><th class="r">Qty</th><th class="c">Unit</th><th class="r">Rate (₹)</th><th class="r">Amount (₹)</th>${gst?'<th class="c">GST %</th><th class="r">GST (₹)</th><th class="r">Total (₹)</th>':''}</tr></thead><tbody>${rows}</tbody></table>
+    ${gst&&c.disc&&c.tax?'<p class="gnote">GST calculated on item value after proportional discount.</p>':''}
     <div class="sum"><div class="words"><div class="k">Amount in words</div><p>Rupees ${words(c.total)} Only</p></div><table class="tt">${tt}</table></div>
     ${terms.length?`<h4>Terms &amp; Conditions</h4><ol>${terms.map(x=>`<li>${esc(x)}</li>`).join('')}</ol>`:''}
     ${sl.bank?`<h4>Bank Details</h4><div class="bank">${esc(sl.bank)}</div>`:''}
@@ -533,7 +540,7 @@ function getPath(p){return p.split('.').reduce((o,k)=>o==null?o:o[k],S)}
 function setPath(p,v){const ks=p.split('.');let o=S;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];o[ks[ks.length-1]]=v}
 function fillFields(){document.querySelectorAll('[data-k]').forEach(el=>{const v=getPath(el.dataset.k);if(el.type==='checkbox')el.checked=!!v;else el.value=v==null?'':v})}
 let raf=0;function changed(){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;renderDoc();LS.set('qm_draft',S)})}
-document.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener(el.type==='checkbox'?'change':'input',()=>{setPath(el.dataset.k,el.type==='checkbox'?el.checked:el.value);changed()})});
+document.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener(el.type==='checkbox'?'change':'input',()=>{setPath(el.dataset.k,el.type==='checkbox'?el.checked:el.value);if(el.dataset.k==='opts.gstOn')renderItems();changed()})});
 
 function renderTpls(){
   const all=allTpl();
@@ -590,6 +597,9 @@ $('saveTpl').addEventListener('click',()=>{
     S.tpl=key;box.remove();renderTpls();renderDoc();toast('"'+name+'" टेम्पलेट सेव हुआ')};
 });
 
+const GST_RATES=[[0,'0% (छूट)'],[0.25,'0.25%'],[3,'3% (सोना/चांदी)'],[5,'5%'],[12,'12% (पुराना)'],[18,'18%'],[28,'28% (पुराना)'],[40,'40%']];
+function gstOpts(v){const n=num(v);const list=GST_RATES.slice();if(!list.some(r=>r[0]===n))list.push([n,n+'%']);list.sort((a,b)=>a[0]-b[0]);return list.map(r=>`<option value="${r[0]}"${r[0]===n?' selected':''}>${r[1]}</option>`).join('')}
+function itemFoot(i){const a=num(i.qty)*num(i.rate);if(!S.opts.gstOn||!num(i.gst))return '₹'+money(a);const g=a*num(i.gst)/100;return '₹'+money(a)+` <span class="gamt">+ GST ₹${money(g)} = </span>₹`+money(a+g)}
 function renderItems(){
   $('itemCount').textContent=S.items.length+' आइटम';
   $('items').innerHTML=S.items.map((i,k)=>`<div class="item" data-i="${k}">
@@ -600,12 +610,13 @@ function renderItems(){
         <label>मात्रा<input id="it_qty_${k}" data-f="qty" type="number" inputmode="decimal" value="${esc(i.qty)}"></label>
         <label>यूनिट<input id="it_unit_${k}" data-f="unit" value="${esc(i.unit)}"></label>
         <label>रेट (₹)<input id="it_rate_${k}" data-f="rate" type="number" inputmode="decimal" value="${esc(i.rate)}"></label>
-        <label>GST %<input id="it_gst_${k}" data-f="gst" type="number" inputmode="decimal" value="${esc(i.gst)}"></label>
+        <label>GST %<select id="it_gst_${k}" data-f="gst">${gstOpts(i.gst)}</select></label>
       </div>
-      <div class="foot"><span class="amt" id="amt_${k}">₹${money(num(i.qty)*num(i.rate))}</span><button class="del" data-del="${k}">हटाएं</button></div>
+      <div class="foot"><span class="amt" id="amt_${k}">${itemFoot(i)}</span><button class="del" data-del="${k}">हटाएं</button></div>
     </div></div>`).join('');
 }
-$('items').addEventListener('input',e=>{const f=e.target.dataset.f;if(!f)return;const k=+e.target.closest('[data-i]').dataset.i;S.items[k][f]=e.target.value;$('amt_'+k).textContent='₹'+money(num(S.items[k].qty)*num(S.items[k].rate));changed()});
+function onItem(e){const f=e.target.dataset.f;if(!f)return;const k=+e.target.closest('[data-i]').dataset.i;S.items[k][f]=f==='gst'?num(e.target.value):e.target.value;$('amt_'+k).innerHTML=itemFoot(S.items[k]);changed()}
+$('items').addEventListener('input',onItem);$('items').addEventListener('change',e=>{if(e.target.tagName==='SELECT')onItem(e)});
 $('items').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(!d)return;const k=+d.dataset.del;const gone=S.items.splice(k,1)[0];renderItems();changed();toast('आइटम हटाया',()=>{S.items.splice(k,0,gone);renderItems();changed()})});
 $('addItem').addEventListener('click',()=>{const last=S.items[S.items.length-1];S.items.push({name:'',desc:'',qty:1,unit:last?last.unit:'Nos',rate:0,gst:last?last.gst:18});renderItems();changed();$('it_name_'+(S.items.length-1)).focus()});
 
