@@ -221,21 +221,117 @@ h3.sub{font-size:.9rem;color:var(--muted);margin:14px 0 8px;font-weight:600}
 .q .sign .thanks{color:#6a7178}
 .q .sign .s{text-align:right}
 .q .sign .s .line{margin-top:44px;border-top:1px solid #9aa1a7;padding-top:4px;min-width:180px}
+/* ---- mode tabs: quotation / project report ---- */
+.shell{padding-block:14px 0}
+.app>.wrap{padding-top:0}
+body:not([data-mode="r"]) #appR,body[data-mode="r"] #appQ{display:none}
+.modes{display:flex;width:100%;margin:0 0 12px}
+.modes button{flex:1;font-size:.98rem;padding:10px 12px}
+.toR{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toR p{margin:0;color:var(--muted);font-size:.88rem}
+/* ---- project report form (scoped) ---- */
+#appR section.box h2{flex-wrap:wrap}
+#appR .fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:480px){#appR .fields.three{grid-template-columns:minmax(0,1fr)}}
+#appR label.f .hint{font-size:.75rem}
+#appR textarea{min-height:60px}
+#appR .note{font-size:.84rem;color:var(--muted);margin:0 0 10px}
+#appR .note.warn{color:var(--warn)}
+#appR .sw{margin:10px 0}
+#appR .items{gap:8px}
+#appR .item{padding:8px 10px;grid-template-columns:24px minmax(0,1fr)}
+#appR .item .nums{grid-template-columns:minmax(0,.7fr) minmax(0,1.2fr) minmax(0,.7fr) minmax(0,1.2fr);align-items:end}
+#appR .item .amt{text-align:right;padding-bottom:8px}
+#appR .item .del{font-size:.82rem;padding:2px 0;align-self:flex-start}
+#appR .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+@media (max-width:480px){#appR .stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+#appR .stat{border:1px solid var(--line);border-radius:8px;padding:7px 9px;background:var(--bg)}
+#appR .stat span{display:block;font-size:.75rem;color:var(--muted)}
+#appR .stat b{font-variant-numeric:tabular-nums;font-size:1.05rem}
+#appR .stat.bad{border-color:var(--warn)} #appR .stat.bad b{color:var(--warn)}
+#appR .stat.good b{color:var(--accent)}
+#appR .paper-head .over{color:var(--warn);font-weight:600}
+#appR .empty{margin:0}
+#r_doc{width:794px;transform-origin:top left}
+#appR .linked{font-size:.88rem;margin:8px 0 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+/* ---- the report paper: always white, one A4 page ---- */
+.r{background:#fff;color:#1b1f23;font-family:var(--qf);font-size:10.6px;line-height:1.4;padding:30px 34px 26px;min-height:1123px;display:flex;flex-direction:column;gap:11px}
+.r p{margin:0}
+.r h4{margin:0 0 4px;font-size:9.8px;letter-spacing:.11em;text-transform:uppercase;color:var(--qc);font-weight:700}
+.r .g2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start}
+.r .sec{min-width:0}
+.r .sec+.sec2{margin-top:9px}
+.r table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.r .kv td{padding:2px 0;vertical-align:top;border-bottom:1px solid #eceef0}
+.r .kv td:first-child{color:#5f676e;width:40%;padding-right:8px}
+.r .kv td.v{white-space:pre-line}
+.r .t th{background:var(--qc);color:#fff;font-weight:600;text-align:left;padding:4px 5px;font-size:9.4px}
+.r .t td{padding:3px 5px;border-bottom:1px solid #e3e6e9;vertical-align:top}
+.r .t .n{text-align:right;white-space:nowrap}
+.r .t .c{text-align:center}
+.r .t tr.st td{font-weight:600;background:var(--qt)}
+.r .t tr.tot td{font-weight:700;border-top:1.5px solid var(--qc);border-bottom:0;color:var(--qc);font-size:11.2px}
+.r .t td.ind{padding-left:12px}
+.r .small{font-size:9.4px;color:#5f676e}
+.r .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:7px}
+.r .tile{background:var(--qt);padding:6px 8px;border-radius:4px}
+.r .tile span{display:block;font-size:8.6px;color:#4f575e;text-transform:uppercase;letter-spacing:.08em}
+.r .tile b{display:block;font-size:15px;color:var(--qc);line-height:1.2}
+.r .wd{background:var(--qt);padding:7px 10px;border-radius:4px;display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.r .wd b{font-size:12.5px;color:var(--qc);white-space:nowrap}
+.r .hd{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:10px;border-bottom:3px solid var(--qc)}
+.r .hd>div{min-width:0}
+.r .hd .k{font-size:10px;letter-spacing:.26em;color:var(--qc);font-weight:700;text-transform:uppercase}
+.r .hd h1{margin:3px 0 2px;font-size:22px;line-height:1.15;color:#15191c}
+.r .hd p{color:#4a5157}
+.r .hm{width:auto;flex-shrink:0}
+.r .hm td{padding:1px 0 1px 10px;text-align:right}
+.r .hm td:first-child{color:#6a7178}
+.r .decl{color:#3d444a}
+.r .spacer{flex:1;min-height:6px}
+.r .ft{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.r .ft .s{text-align:right}
+.r .ft .s .line{margin-top:40px;border-top:1px solid #9aa1a7;padding-top:3px;min-width:190px}
+.r .ft .l{color:#4a5157}
+/* layout 1: coloured header band */
+.r.L1 .hd{background:var(--qc);margin:-30px -34px 0;padding:24px 34px 14px;border:0}
+.r.L1 .hd .k,.r.L1 .hd h1,.r.L1 .hd p,.r.L1 .hm td,.r.L1 .hm td:first-child{color:#fff}
+.r.L1 .hd .k,.r.L1 .hm td:first-child{opacity:.8}
+.r.L1 h4{border-bottom:1px solid var(--qc);padding-bottom:2px}
+/* layout 2: boxed, traditional */
+.r.L2 .hd{flex-direction:column;align-items:center;text-align:center;border:1.5px solid #2f3439;padding:10px 12px 8px}
+.r.L2 .hd .k{background:var(--qc);color:#fff;padding:2px 12px;letter-spacing:.3em}
+.r.L2 .hm{margin:2px auto 0}
+.r.L2 .hm tr{display:inline}
+.r.L2 .hm td{padding:0 4px;text-align:left}
+.r.L2 .sec{border:1px solid #2f3439;padding:6px 8px}
+.r.L2 h4{color:#15191c;background:var(--qt);margin:-6px -8px 5px;padding:4px 8px;border-bottom:1px solid #2f3439}
+.r.L2 .t th{background:transparent;color:#15191c;border-bottom:1px solid #2f3439}
+.r.L2 .tile{border-radius:0;border:1px solid #c5cacf}
+.r.L2 .wd{border-radius:0;border:1px solid #2f3439}
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<div class="wrap shell">
   <header class="top">
     <div>
       <h1>कोटेशन मेकर</h1>
-      <p>बिज़नेस खोजें, डिटेल भरें, PDF बनाएं</p>
+      <p>कोटेशन और एक पेज की प्रोजेक्ट रिपोर्ट (DPR), PDF में</p>
     </div>
     <div class="seg" role="group" aria-label="व्यू">
       <button id="vForm" aria-pressed="true">भरें</button>
       <button id="vPrev" aria-pressed="false">प्रीव्यू</button>
     </div>
   </header>
+  <div class="seg2 modes" role="group" aria-label="क्या बनाना है">
+    <button data-mode="q" aria-pressed="true">कोटेशन</button>
+    <button data-mode="r" aria-pressed="false">प्रोजेक्ट रिपोर्ट</button>
+  </div>
+</div>
+
+<div class="app" id="appQ">
+<div class="wrap">
 
   <div class="grid">
     <div class="col form-col">
@@ -325,6 +421,11 @@ h3.sub{font-size:.9rem;color:var(--muted);margin:14px 0 8px;font-weight:600}
         <textarea id="t_terms" data-k="terms" rows="6"></textarea>
       </section>
 
+      <section class="box toR">
+        <div><b>लोन के लिए प्रोजेक्ट रिपोर्ट?</b><p>इसी कोटेशन की मशीनें और कस्टमर लेकर एक पेज की DPR बनाएं</p></div>
+        <button class="btn primary" id="toR">प्रोजेक्ट रिपोर्ट बनाएं</button>
+      </section>
+
       <section class="box">
         <h2>सेव की गई कोटेशन</h2>
         <div class="hist" id="hist"></div>
@@ -348,6 +449,152 @@ h3.sub{font-size:.9rem;color:var(--muted);margin:14px 0 8px;font-weight:600}
     <button class="btn primary" id="dlPdf">PDF डाउनलोड</button>
   </div>
 </div></div>
+</div>
+
+<div class="app" id="appR">
+<div class="wrap">
+  <div class="grid">
+    <div class="col form-col">
+      <section class="box">
+        <h2>कोटेशन से भरें <small>मशीनें, रेट और कस्टमर अपने आप</small></h2>
+        <p class="note">कोई कोटेशन चुनें: उसकी मशीनें, रेट, GST और कस्टमर (आवेदक) की डिटेल रिपोर्ट में भर जाएंगी, और रिपोर्ट में कोटेशन नंबर लिखा आएगा।</p>
+        <div class="hist" id="r_fromQ"></div>
+        <div class="linked" id="r_linked"></div>
+      </section>
+      <section class="box" id="r_presetBox">
+        <h2>तैयार रिपोर्ट <small>उदाहरण</small></h2>
+        <div class="hist" id="r_presets"></div>
+      </section>
+      <section class="box">
+        <h2>1. बिज़नेस चुनें <small id="r_bizCount"></small></h2>
+        <div class="picked" id="r_picked"></div>
+        <input id="r_bizQ" type="search" placeholder="बिज़नेस खोजें, जैसे: आटा चक्की, अचार, ब्यूटी पार्लर, मोबाइल" autocomplete="off">
+        <div class="row filt">
+          <div class="seg2" role="group" aria-label="सेक्टर">
+            <button data-sec="" aria-pressed="true">सभी</button>
+            <button data-sec="M" aria-pressed="false">मैन्युफैक्चरिंग</button>
+            <button data-sec="S" aria-pressed="false">सर्विस</button>
+          </div>
+          <select id="r_bizCat" aria-label="कैटेगरी" style="flex:1;min-width:150px"></select>
+        </div>
+        <div class="results" id="r_results"></div>
+        <p class="note" style="margin:8px 0 0">बिज़नेस चुनते ही मशीनरी, लागत और कमाई-खर्च के अंदाज़े वाले आंकड़े भर जाते हैं। ये उदाहरण हैं, अपने असली आंकड़े डालें।</p>
+      </section>
+
+      <section class="box">
+        <h2>2. आवेदक (Promoter)</h2>
+        <div class="fields">
+          <label class="f full">आवेदक का नाम<input id="r_a_name" data-k="app.name"></label>
+          <label class="f full">पिता / पति का नाम<input id="r_a_father" data-k="app.father"></label>
+          <label class="f">जाति वर्ग<select id="r_a_cat" data-k="app.cat">
+            <option>General</option><option>OBC</option><option>SC</option><option>ST</option>
+          </select></label>
+          <label class="f">विशेष श्रेणी<select id="r_a_spec" data-k="app.special">
+            <option value="">कोई नहीं</option><option>Women</option><option>Minority</option><option>Ex-Serviceman</option><option>Divyang</option>
+          </select></label>
+          <label class="f full">पढ़ाई<input id="r_a_qual" data-k="app.qual" placeholder="जैसे: 12th Pass"></label>
+          <label class="f full">पता<textarea id="r_a_addr" data-k="app.addr" rows="2"></textarea></label>
+          <label class="f">मोबाइल<input id="r_a_phone" data-k="app.phone" inputmode="tel"></label>
+          <label class="f">अनुभव (वैकल्पिक)<input id="r_a_exp" data-k="app.exp" placeholder="जैसे: 3 साल"></label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>3. यूनिट और लोन स्कीम</h2>
+        <div class="fields">
+          <label class="f full">यूनिट / फर्म का नाम<input id="r_u_name" data-k="unit.name"></label>
+          <label class="f full">काम (Activity)<input id="r_u_act" data-k="unit.activity"></label>
+          <label class="f">किस प्रकार<select id="r_u_type" data-k="unit.type"><option value="M">Manufacturing</option><option value="S">Service</option></select></label>
+          <label class="f">फर्म का प्रकार<select id="r_u_const" data-k="unit.constitution"><option>Proprietorship</option><option>Partnership</option><option>Private Limited</option><option>LLP</option><option>SHG</option></select></label>
+          <label class="f">क्षेत्र<select id="r_u_area" data-k="unit.area"><option>Rural</option><option>Urban</option></select></label>
+          <label class="f">लोन स्कीम<select id="r_u_scheme" data-k="unit.scheme"><option>PMEGP</option><option>CM YUVA</option><option>PM Mudra Yojana</option><option>PMFME</option><option>Stand-Up India</option><option>CMEGP / State Scheme</option><option>Bank Term Loan</option></select></label>
+          <label class="f full">यूनिट का पता<textarea id="r_u_addr" data-k="unit.addr" rows="2"></textarea></label>
+          <label class="f full">बैंक और ब्रांच<input id="r_u_bank" data-k="unit.bank"></label>
+          <label class="check full" id="r_aspRow"><input type="checkbox" id="r_u_asp" data-k="unit.aspirational"> आकांक्षी (Aspirational) जिला / बुंदेलखंड – CM YUVA में मार्जिन मनी 10%</label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>4. मशीनरी और उपकरण <small id="r_itemCount"></small></h2>
+        <label class="check" style="margin-bottom:10px"><input type="checkbox" id="r_f_gst" data-k="fin.gstOn"> मशीनरी की रकम में GST जोड़ें</label>
+        <div class="items" id="r_items"></div>
+        <div class="row" style="margin-top:10px"><button class="btn primary" id="r_addItem">+ मशीन जोड़ें</button></div>
+      </section>
+
+      <section class="box">
+        <h2>5. बाकी लागत <small>₹ में</small></h2>
+        <div class="fields">
+          <label class="f">बिल्डिंग / शेड<input id="r_c_bld" data-k="cost.building" type="number" inputmode="decimal"><span class="hint">किराए पर है तो 0</span></label>
+          <label class="f">फर्नीचर / फिक्सचर<input id="r_c_furn" data-k="cost.furniture" type="number" inputmode="decimal"></label>
+          <label class="f">शुरुआती खर्च (Pre-operative)<input id="r_c_pre" data-k="cost.preop" type="number" inputmode="decimal"><span class="hint">बिजली कनेक्शन, रजिस्ट्रेशन, ट्रेनिंग</span></label>
+          <label class="f">अन्य / आकस्मिक<input id="r_c_oth" data-k="cost.other" type="number" inputmode="decimal"></label>
+          <label class="f full">वर्किंग कैपिटल (कच्चा माल, शुरुआती खर्च के लिए)<input id="r_c_wc" data-k="cost.wc" type="number" inputmode="decimal"></label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>6. फाइनेंस</h2>
+        <p class="note" id="r_schemeNote"></p>
+        <div class="fields">
+          <label class="f">मार्जिन मनी / अपना हिस्सा (%)<input id="r_f_own" data-k="fin.own" type="number" inputmode="decimal"></label>
+          <label class="f">सब्सिडी (%)<input id="r_f_sub" data-k="fin.sub" type="number" inputmode="decimal"></label>
+          <label class="f">ब्याज दर (% सालाना)<input id="r_f_rate" data-k="fin.rate" type="number" inputmode="decimal"></label>
+          <label class="f">लोन अवधि (साल)<input id="r_f_years" data-k="fin.years" type="number" inputmode="decimal"></label>
+        </div>
+      </section>
+
+      <section class="box">
+        <h2>7. सालाना कमाई और खर्च <button class="btn ghost" id="r_estimate">अंदाज़े से भरें</button></h2>
+        <div class="fields">
+          <label class="f full">सालाना बिक्री / कमाई (₹)<input id="r_p_sales" data-k="pl.sales" type="number" inputmode="decimal"></label>
+          <label class="f">कच्चा माल (बिक्री का %)<input id="r_p_rm" data-k="pl.rm" type="number" inputmode="decimal"></label>
+          <label class="f">कितने कर्मचारी<input id="r_p_staff" data-k="pl.staff" type="number" inputmode="numeric"></label>
+          <label class="f">एक कर्मचारी का वेतन (₹ महीना)<input id="r_p_sal" data-k="pl.salary" type="number" inputmode="decimal"></label>
+          <label class="f">किराया (₹ महीना)<input id="r_p_rent" data-k="pl.rent" type="number" inputmode="decimal"></label>
+          <label class="f">बिजली-पानी (₹ महीना)<input id="r_p_elec" data-k="pl.elec" type="number" inputmode="decimal"></label>
+          <label class="f">अन्य खर्च (₹ महीना)<input id="r_p_misc" data-k="pl.misc" type="number" inputmode="decimal"><span class="hint">ट्रांसपोर्ट, पैकिंग, मरम्मत</span></label>
+        </div>
+        <div class="stats" id="r_stats"></div>
+        <p class="note warn" id="r_plNote" hidden style="margin:8px 0 0"></p>
+      </section>
+
+      <section class="box">
+        <h2>8. रिपोर्ट की डिटेल और डिज़ाइन</h2>
+        <div class="fields">
+          <label class="f">तारीख<input id="r_m_date" type="date" data-k="meta.date"></label>
+          <label class="f">स्थान (Place)<input id="r_m_place" data-k="meta.place"></label>
+          <label class="f full">रिपोर्ट बनाने वाला (वैकल्पिक)<input id="r_m_prep" data-k="prep" placeholder="जैसे: आपका CSC / कंसल्टेंसी का नाम और मोबाइल"></label>
+        </div>
+        <h3 style="font-size:.9rem;color:var(--muted);margin:14px 0 8px;font-weight:600">डिज़ाइन</h3>
+        <div class="tpls" id="r_dLayouts" role="group" aria-label="लेआउट"></div>
+        <div class="sw" id="r_dColors" role="group" aria-label="रंग"></div>
+        <label class="f" style="max-width:260px">फ़ॉन्ट<select id="r_dFont"></select></label>
+      </section>
+
+      <section class="box">
+        <h2>सेव की गई रिपोर्ट</h2>
+        <div class="hist" id="r_hist"></div>
+      </section>
+    </div>
+
+    <div class="col preview-col">
+      <div class="paper-head"><b>प्रीव्यू</b><span id="r_pageNote">जैसा PDF में दिखेगा (A4, एक पेज)</span></div>
+      <div class="paper-wrap" id="r_pwrap"><div id="r_doc"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="bar"><div class="in">
+  <div class="tot"><small>कुल प्रोजेक्ट लागत</small><span id="r_barTot">₹0</span></div>
+  <div class="row">
+    <button class="btn" id="r_newR">नई</button>
+    <button class="btn" id="r_saveR">सेव</button>
+    <button class="btn" id="r_dlImg">फोटो</button>
+    <button class="btn" id="r_shR">शेयर</button>
+    <button class="btn primary" id="r_dlPdf">PDF डाउनलोड</button>
+  </div>
+</div></div>
+</div>
 
 <script>
 /* PDF libraries: bundled copy first (works offline in the app), CDN as fallback */
@@ -362,6 +609,7 @@ if('serviceWorker' in navigator && !window.AndroidBridge && location.protocol===
 </html>
 <script>
 (function(){
+const QROOT=document.getElementById('appQ');
 const BUILTIN = {
   shuttering:{label:'शटरिंग / सेंटरिंग',color:'#2f4a62',subject:'Quotation for Shuttering & Centering Material',
     items:[
@@ -538,9 +786,9 @@ window.addEventListener('resize',fit);
 /* ---------- form ---------- */
 function getPath(p){return p.split('.').reduce((o,k)=>o==null?o:o[k],S)}
 function setPath(p,v){const ks=p.split('.');let o=S;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];o[ks[ks.length-1]]=v}
-function fillFields(){document.querySelectorAll('[data-k]').forEach(el=>{const v=getPath(el.dataset.k);if(el.type==='checkbox')el.checked=!!v;else el.value=v==null?'':v})}
+function fillFields(){QROOT.querySelectorAll('[data-k]').forEach(el=>{const v=getPath(el.dataset.k);if(el.type==='checkbox')el.checked=!!v;else el.value=v==null?'':v})}
 let raf=0;function changed(){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;renderDoc();LS.set('qm_draft',S)})}
-document.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener(el.type==='checkbox'?'change':'input',()=>{setPath(el.dataset.k,el.type==='checkbox'?el.checked:el.value);if(el.dataset.k==='opts.gstOn')renderItems();changed()})});
+QROOT.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener(el.type==='checkbox'?'change':'input',()=>{setPath(el.dataset.k,el.type==='checkbox'?el.checked:el.value);if(el.dataset.k==='opts.gstOn')renderItems();changed()})});
 
 function renderTpls(){
   const all=allTpl();
@@ -583,7 +831,7 @@ function renderResults(){
 }
 $('bizQ').addEventListener('input',renderResults);
 $('bizCat').addEventListener('change',renderResults);
-document.querySelectorAll('[data-sec]').forEach(b=>b.addEventListener('click',()=>{sec=b.dataset.sec;document.querySelectorAll('[data-sec]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderResults()}));
+QROOT.querySelectorAll('[data-sec]').forEach(b=>b.addEventListener('click',()=>{sec=b.dataset.sec;QROOT.querySelectorAll('[data-sec]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderResults()}));
 $('results').addEventListener('click',e=>{const r=e.target.closest('[data-b]');if(r)applyTpl('b'+r.dataset.b)});
 $('saveTpl').addEventListener('click',()=>{
   const box=document.createElement('div');box.className='row';box.style.marginTop='8px';
@@ -673,7 +921,7 @@ $('hist').addEventListener('click',e=>{const o=e.target.closest('[data-open]'),r
 $('saveQ').addEventListener('click',()=>{const c=calc();const copy=JSON.parse(JSON.stringify(S));
   const i=history.findIndex(h=>h.s.meta.no===S.meta.no);
   if(i>=0)history[i]={s:copy,total:c.total};else{history.unshift({s:copy,total:c.total});const m=(S.meta.no||'').match(/^(.*)\/\d{4}-\d{2}\/(\d+)\s*$/);if(m){const key='qm_cnt_'+cleanPrefix(m[1]);LS.set(key,Math.max(LS.get(key,0),+m[2]))}}
-  history=history.slice(0,50);LS.set('qm_hist',history)?toast('कोटेशन सेव हुई'):toast('इस ब्राउज़र में सेव नहीं हो पाया');renderHist()});
+  history=history.slice(0,50);LS.set('qm_hist',history)?toast('कोटेशन सेव हुई'):toast('इस ब्राउज़र में सेव नहीं हो पाया');renderHist();if(window.QM&&QM.refreshR)QM.refreshR()});
 $('newQ').addEventListener('click',()=>{const prev=JSON.stringify(S);
   S=fresh(S.tpl,Object.assign({},S.seller));S.cust={name:'',addr:'',phone:'',gstin:''};renderAll();toast('नई कोटेशन',()=>{S=JSON.parse(prev);renderAll()})});
 
@@ -716,7 +964,7 @@ $('shPdf').addEventListener('click',e=>save('pdf',makePdf,e.currentTarget,'share
 $('dlImg').addEventListener('click',e=>save('png',async()=>{const cv=await shot();return await new Promise(r=>cv.toBlob(r,'image/png'))},e.currentTarget,'save'));
 
 /* view switch + toast */
-function view(v){document.body.dataset.view=v;$('vForm').setAttribute('aria-pressed',v==='form');$('vPrev').setAttribute('aria-pressed',v==='preview');if(v==='preview')requestAnimationFrame(fit)}
+function view(v){document.body.dataset.view=v;$('vForm').setAttribute('aria-pressed',v==='form');$('vPrev').setAttribute('aria-pressed',v==='preview');if(v==='preview')requestAnimationFrame(()=>window.dispatchEvent(new Event('resize')))}
 $('vForm').onclick=()=>view('form');$('vPrev').onclick=()=>view('preview');view('form');
 let tt=0;function toast(msg,undo){let t=document.querySelector('.toast');if(t)t.remove();t=document.createElement('div');t.className='toast';t.setAttribute('role','status');
   const s=document.createElement('span');s.textContent=msg;t.appendChild(s);
@@ -724,11 +972,395 @@ let tt=0;function toast(msg,undo){let t=document.querySelector('.toast');if(t)t.
   document.body.appendChild(t);clearTimeout(tt);tt=setTimeout(()=>t.remove(),undo?6000:2600)}
 
 function renderAll(){renderTpls();renderResults();fillFields();renderItems();renderCos();renderDesign();renderHist();renderDoc();LS.set('qm_draft',S)}
+window.QM={BIZ,CATS,SYN,deliver,toast,
+  quotes(){const cur={s:JSON.parse(JSON.stringify(S)),total:calc().total,cur:true};const list=[cur];history.forEach(h=>{if(h.s.meta.no!==S.meta.no)list.push({s:JSON.parse(JSON.stringify(h.s)),total:h.total})});return list}};
+$('toR').addEventListener('click',()=>{const Q=window.QM;if(!Q.fillFromQuote)return;Q.setMode('r');Q.fillFromQuote(Q.quotes()[0]);scrollTo({top:0})});
 renderAll();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 setTimeout(fit,300);
 })();
 if('serviceWorker' in navigator && !window.AndroidBridge && location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script>
+<script>
+/* ===== Project report (one page DPR) ===== */
+(function(){
+const QM=window.QM;const {BIZ,CATS,SYN}=QM;const ROOT=document.getElementById('appR');
+const LS={
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+};
+let history=LS.get('pr_hist',[]);
+const $=id=>document.getElementById('r_'+id);
+const num=v=>{const n=parseFloat(v);return isFinite(n)?n:0};
+const rs=n=>Math.round(n).toLocaleString('en-IN');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const fmtDate=s=>{if(!s)return '';const [y,m,d]=s.split('-');return d+'-'+m+'-'+y};
+const r1k=(n,step)=>Math.round(n/step)*step;
+
+function words(n){
+  n=Math.round(n);if(n<=0)return 'Zero';
+  const a=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+  const b=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+  const two=x=>x<20?a[x]:b[Math.floor(x/10)]+(x%10?' '+a[x%10]:'');
+  const three=x=>(x>=100?a[Math.floor(x/100)]+' Hundred'+(x%100?' ':''):'')+(x%100?two(x%100):'');
+  let out=[];const cr=Math.floor(n/1e7);n%=1e7;const lk=Math.floor(n/1e5);n%=1e5;const th=Math.floor(n/1e3);n%=1e3;
+  if(cr)out.push((cr>=100?words(cr):two(cr))+' Crore');if(lk)out.push(two(lk)+' Lakh');if(th)out.push(two(th)+' Thousand');if(n)out.push(three(n));
+  return out.join(' ');
+}
+
+/* ---------- scheme rules ---------- */
+const CASTES=['General','OBC','SC','ST'];
+function fixApp(s){if(!CASTES.includes(s.app.cat)){s.app.special=s.app.special||s.app.cat||'';s.app.cat='General'}if(s.app.special==null)s.app.special='';return s}
+function catLabel(a){return a.cat+(a.special?' / '+a.special:'')}
+function schemeRates(){
+  const u=S.unit,a=S.app,sp=a.cat!=='General'||!!a.special,rural=u.area==='Rural';
+  switch(u.scheme){
+    case 'PMEGP':return {own:sp?5:10,sub:sp?(rural?35:25):(rural?25:15)};
+    case 'CM YUVA':return {own:(a.cat==='SC'||a.cat==='ST'||a.special==='Divyang'||u.aspirational)?10:a.cat==='OBC'?12.5:15,sub:10};
+    case 'PMFME':return {own:10,sub:35};
+    case 'Stand-Up India':return {own:15,sub:0};
+    default:return {own:10,sub:0};
+  }
+}
+function schemeText(){
+  const u=S.unit;
+  if(u.scheme==='PMEGP')return 'PMEGP: General को 10% अपना हिस्सा, SC/ST/OBC/महिला/अल्पसंख्यक आदि को 5%। सब्सिडी शहरी 15/25%, ग्रामीण 25/35%। सीमा: मैन्युफैक्चरिंग ₹50 लाख, सर्विस ₹20 लाख।';
+  if(u.scheme==='CM YUVA')return 'CM YUVA (मुख्यमंत्री युवा उद्यमी विकास अभियान, उ.प्र.): मार्जिन मनी General 15%, OBC 12.5%, SC/ST/दिव्यांग/आकांक्षी जिला 10%। सरकार से 10% मार्जिन मनी सब्सिडी। लोन 4 साल ब्याज-मुक्त, बिना गारंटी। पहले चरण में सीमा ₹5 लाख।';
+  if(u.scheme==='PMFME')return 'PMFME: लागत का 35% सब्सिडी, अधिकतम ₹10 लाख। अपना हिस्सा कम से कम 10%।';
+  if(u.scheme==='PM Mudra Yojana')return 'मुद्रा: शिशु ₹50 हज़ार, किशोर ₹5 लाख, तरुण ₹10 लाख, तरुण प्लस ₹20 लाख तक। सब्सिडी नहीं।';
+  if(u.scheme==='Stand-Up India')return 'स्टैंड-अप इंडिया: SC/ST या महिला उद्यमी, ₹10 लाख से ₹1 करोड़। अपना हिस्सा 15% तक।';
+  return 'स्कीम बदलने पर अपना हिस्सा और सब्सिडी % अपने-आप भर जाते हैं, ज़रूरत हो तो बदल लें।';
+}
+
+/* ---------- money ---------- */
+function amort(P,ratePct,years){
+  const r=ratePct/1200,n=Math.round(years*12);
+  if(P<=0||n<=0)return {emi:0,int1:0,prin1:0};
+  const emi=r?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n;
+  let bal=P,i1=0,p1=0;for(let m=0;m<Math.min(12,n);m++){const it=bal*r,pr=emi-it;i1+=it;p1+=pr;bal-=pr}
+  return {emi,int1:i1,prin1:p1};
+}
+function calc(){
+  const f=S.fin,c=S.cost,p=S.pl;
+  let mach=0;S.items.forEach(i=>{i._a=num(i.qty)*num(i.rate)*(f.gstOn?1+num(i.gst)/100:1);mach+=i._a});
+  const bld=num(c.building),furn=num(c.furniture),pre=num(c.preop),oth=num(c.other),wc=num(c.wc);
+  const fixed=bld+mach+furn+pre+oth,total=fixed+wc;
+  const ownPct=Math.max(0,Math.min(100,num(f.own)));const own=total*ownPct/100;const loan=total-own;
+  const tl=total?fixed-own*fixed/total:0,wcl=loan-tl;
+  let sub=total*num(f.sub)/100;if(S.unit.scheme==='PMFME')sub=Math.min(sub,1000000);
+  const am=amort(tl,num(f.rate),num(f.years));
+  const wcInt=wcl*num(f.rate)/100;const interest=am.int1+wcInt;
+  const dep=mach*.15+furn*.10+bld*.05;
+  const sales=num(p.sales),rm=sales*num(p.rm)/100,wages=num(p.staff)*num(p.salary)*12,rent=num(p.rent)*12,elec=num(p.elec)*12,misc=num(p.misc)*12;
+  const exp=rm+wages+rent+elec+misc+dep+interest;const np=sales-exp;
+  const service=interest+am.prin1;const dscr=service>0?(np+dep+interest)/service:null;
+  const fixedC=wages+rent+misc+dep+interest,contrib=sales-rm-elec;const bep=contrib>0?fixedC/contrib*100:null;
+  const payback=np+dep>0?total/(np+dep):null;
+  return {mach,bld,furn,pre,oth,wc,fixed,total,ownPct,own,loan,tl,wcl,sub,am,wcInt,interest,dep,sales,rm,wages,rent,elec,misc,exp,np,dscr,bep,payback};
+}
+
+/* ---------- state ---------- */
+function bizItems(i){return BIZ[i][4].map(a=>({name:a[0]+(a[1]?' ('+a[1]+')':''),qty:a[2],rate:a[4],gst:a[5]}))}
+function bizCosts(i){
+  const M=BIZ[i][0]==='M';let mach=0;BIZ[i][4].forEach(a=>mach+=a[2]*a[4]*(1+a[5]/100));
+  return {building:0,furniture:M?25000:40000,preop:15000,other:0,wc:Math.max(50000,r1k(mach*.25,10000))};
+}
+function estimate(){
+  const M=S.unit.type!=='S';const pre=calc();
+  S.pl.staff=Math.max(2,Math.min(15,Math.round(pre.total/200000)));
+  S.pl.salary=10000;S.pl.rent=M?8000:6000;S.pl.elec=M?5000:2000;S.pl.misc=3000;S.pl.rm=M?55:30;
+  const c=calc();
+  const fixedAnnual=c.wages+c.rent+c.elec+c.misc+c.dep+c.interest;
+  S.pl.sales=Math.ceil(fixedAnnual/(1-S.pl.rm/100-0.12)/10000)*10000;
+}
+const DEF=(()=>{const i=BIZ.findIndex(b=>/flour mill|atta/i.test(b[2]));return i<0?0:i})();
+function fresh(i){
+  const b=BIZ[i];
+  const s={tpl:i,
+    app:{name:'Ramesh Kumar',father:'Shri Mohan Lal',cat:'OBC',special:'',qual:'12th Pass',addr:'Village Chandpur, Tehsil Sanganer\nJaipur, Rajasthan – 302029',phone:'98290 00000',exp:'3 years'},
+    unit:{name:'Shree Balaji Enterprises',activity:b[2],type:b[0],constitution:'Proprietorship',area:'Rural',scheme:'PMEGP',addr:'Village Chandpur, Tehsil Sanganer, Jaipur',bank:'State Bank of India, Sanganer Branch'},
+    items:bizItems(i),cost:bizCosts(i),
+    fin:{gstOn:true,own:5,sub:35,rate:11,years:5},
+    pl:{},meta:{date:today(),place:'Jaipur'},prep:LS.get('pr_prep',''),
+    design:LS.get('pr_design',{layout:0,color:'#1d6b4a',font:0})};
+  return s;
+}
+let S=LS.get('pr_draft',null);
+if(!S||!S.app||!S.unit){S=fresh(DEF);const r=schemeRates.call(null);S.fin.own=r.own;S.fin.sub=r.sub;estimate()}
+fixApp(S);
+
+/* ---------- document ---------- */
+const PAL=['#1d6b4a','#1f4e79','#8b1e3f','#7a4b12','#4b2e83','#0f6b75','#9c3d14','#2f3640'];
+const LAYOUTS=['क्लासिक','रंगीन हेडर','बॉक्स (पारंपरिक)'];
+const FONTS=[['IBM Plex Sans','"IBM Plex Sans"'],['सेरिफ़ (Lora)','"Lora",Georgia,serif'],['पतला (Condensed)','"Roboto Condensed"'],['गोल (Poppins)','"Poppins"']];
+function tint(hex,a){const m=/^#?([0-9a-f]{6})$/i.exec(hex||'');if(!m)return '#eef1f4';const n=parseInt(m[1],16);const c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(255-(255-v)*a));return 'rgb('+c.join(',')+')'}
+const kv=rows=>`<table class="kv">${rows.filter(r=>r[1]!==''&&r[1]!=null).map(r=>`<tr><td>${r[0]}</td><td class="v">${r[1]}</td></tr>`).join('')}</table>`;
+const pct=(x,d)=>x==null?'—':x.toFixed(d==null?1:d);
+
+function renderDoc(){
+  const c=calc();const a=S.app,u=S.unit,d=S.design||{};const L=Math.max(0,Math.min(2,d.layout|0));
+  const unitName=esc(u.name)||esc(u.activity)||'Project';
+  const isM=u.type!=='S';
+  const scheme=esc(u.scheme);
+  const head=`<div class="hd"><div><div class="k">Project Report</div><h1>${unitName}</h1><p>${esc(u.activity)}${u.activity?' · ':''}${isM?'Manufacturing':'Service'} Unit · Under ${scheme}</p></div>
+    <table class="hm"><tr><td>Project Cost</td><td><b>₹ ${rs(c.total)}</b></td></tr><tr><td>Date</td><td>${fmtDate(S.meta.date)}</td></tr>${u.bank?`<tr><td>Bank</td><td>${esc(u.bank.split(',')[0])}</td></tr>`:''}</table></div>`;
+  const promoter=kv([['Name',`<b>${esc(a.name)}</b>`],['S/o, W/o, D/o',esc(a.father)],['Category',esc(catLabel(a))],['Qualification',esc(a.qual)],['Experience',esc(a.exp)],['Address',esc(a.addr)],['Mobile',esc(a.phone)]]);
+  const unit=kv([['Name of Unit',`<b>${unitName}</b>`],['Activity',esc(u.activity)],['Type',isM?'Manufacturing':'Service'],['Constitution',esc(u.constitution)],['Location',esc(u.addr)+(u.area?` (${esc(u.area)})`:'')],['Scheme',scheme],['Financing Bank',esc(u.bank)],['Employment',(num(S.pl.staff)+1)+' persons (incl. promoter)']]);
+  const gst=S.fin.gstOn;
+  const mrows=S.items.map((i,k)=>`<tr><td class="c">${k+1}</td><td>${esc(i.name)||'&nbsp;'}</td><td class="c">${esc(i.qty)}</td><td class="n">${rs(num(i.rate))}</td><td class="n">${rs(i._a)}</td></tr>`).join('');
+  const mach=`<table class="t"><thead><tr><th class="c" style="width:18px">#</th><th>Particulars</th><th class="c">Qty</th><th class="n">Rate (₹)</th><th class="n">Amount (₹)</th></tr></thead><tbody>${mrows}<tr class="tot"><td></td><td colspan="3">Total Machinery${gst?' (incl. GST)':''}</td><td class="n">${rs(c.mach)}</td></tr></tbody></table>${S.qref&&S.qref.no?`<p class="small" style="margin-top:3px">As per quotation No. ${esc(S.qref.no)}${S.qref.date?' dated '+fmtDate(S.qref.date):''}${S.qref.seller?' of M/s '+esc(S.qref.seller):''}.</p>`:''}`;
+  const costRows=[['Land & Building / Shed',c.bld,!c.bld?'(rented premises)':''],['Machinery & Equipment',c.mach],['Furniture & Fixtures',c.furn],['Pre-operative Expenses',c.pre],['Contingency / Others',c.oth]].filter(r=>r[1]||r[2]);
+  const cost=`<table class="t"><thead><tr><th>Particulars</th><th class="n">Amount (₹)</th></tr></thead><tbody>
+    ${costRows.map(r=>`<tr><td>${r[0]} ${r[2]?`<span class="small">${r[2]}</span>`:''}</td><td class="n">${rs(r[1])}</td></tr>`).join('')}
+    <tr class="st"><td>Total Fixed Capital</td><td class="n">${rs(c.fixed)}</td></tr>
+    <tr><td>Working Capital</td><td class="n">${rs(c.wc)}</td></tr>
+    <tr class="tot"><td>Total Project Cost</td><td class="n">${rs(c.total)}</td></tr></tbody></table>`;
+  const fin=`<table class="t"><thead><tr><th>Source</th><th class="n">%</th><th class="n">Amount (₹)</th></tr></thead><tbody>
+    <tr><td>Own Contribution (Margin Money)</td><td class="n">${pct(c.ownPct,0)}</td><td class="n">${rs(c.own)}</td></tr>
+    <tr><td>Term Loan (Bank)</td><td class="n">${c.total?pct(c.tl/c.total*100,0):'—'}</td><td class="n">${rs(c.tl)}</td></tr>
+    <tr><td>Working Capital Loan</td><td class="n">${c.total?pct(c.wcl/c.total*100,0):'—'}</td><td class="n">${rs(c.wcl)}</td></tr>
+    <tr class="tot"><td>Total</td><td class="n">100</td><td class="n">${rs(c.total)}</td></tr></tbody></table>
+    ${c.sub>0?`<p class="small" style="margin-top:4px">${u.scheme==='PMEGP'||u.scheme==='CM YUVA'?'Margin money subsidy':'Capital subsidy'} under ${u.scheme==='CM YUVA'?'Mukhyamantri Yuva Udyami Vikas Abhiyan (CM YUVA)':scheme} @ ${pct(num(S.fin.sub),0)}%: <b style="color:#1b1f23">₹ ${rs(c.sub)}</b>, adjusted as per scheme guidelines.${u.scheme==='CM YUVA'?' Loan is interest-free and collateral-free for 4 years (100% interest subsidy by Govt. of U.P.).':''}</p>`:''}`;
+  const plRows=[['Raw Material & Consumables',c.rm],[`Wages & Salary (${num(S.pl.staff)} × ₹${rs(num(S.pl.salary))} × 12)`,c.wages],['Rent',c.rent],['Electricity & Water',c.elec],['Other Expenses',c.misc],['Depreciation',c.dep],['Interest on Loan',c.interest]].filter(r=>r[1]);
+  const pl=`<table class="t"><thead><tr><th>Particulars</th><th class="n">Amount (₹)</th></tr></thead><tbody>
+    <tr class="st"><td>Sales / Revenue (A)</td><td class="n">${rs(c.sales)}</td></tr>
+    ${plRows.map(r=>`<tr><td class="ind">${r[0]}</td><td class="n">${rs(r[1])}</td></tr>`).join('')}
+    <tr class="st"><td>Total Expenses (B)</td><td class="n">${rs(c.exp)}</td></tr>
+    <tr class="tot"><td>Net Profit (A − B)</td><td class="n">${c.np<0?'− ':''}${rs(Math.abs(c.np))}</td></tr></tbody></table>
+    <p class="small" style="margin-top:4px">Depreciation: machinery 15%, furniture 10%, building 5% (WDV). Net profit ${c.sales?pct(c.np/c.sales*100):'—'}% of sales.</p>`;
+  const loan=kv([['Term Loan',`₹ ${rs(c.tl)}`],['Rate of Interest',`${pct(num(S.fin.rate))}% p.a.`],['Repayment',`${num(S.fin.years)} years, ${Math.round(num(S.fin.years)*12)} EMIs`],['Monthly EMI',`<b>₹ ${rs(c.am.emi)}</b>`],['Principal repaid (Yr 1)',`₹ ${rs(c.am.prin1)}`],['Interest (Yr 1)',`₹ ${rs(c.interest)}`]]);
+  const tiles=`<div class="tiles">
+    <div class="tile"><span>DSCR (Year 1)</span><b>${pct(c.dscr,2)}</b></div>
+    <div class="tile"><span>Break-even Point</span><b>${c.bep==null?'—':pct(c.bep,1)+'%'}</b></div>
+    <div class="tile"><span>Payback Period</span><b>${c.payback==null?'—':pct(c.payback,1)+' yrs'}</b></div>
+    <div class="tile"><span>Profit per Month</span><b>₹ ${c.np<0?'−':''}${rs(Math.abs(c.np)/12)}</b></div></div>`;
+  const font=(FONTS[d.font]||FONTS[0])[1]+',"IBM Plex Sans Devanagari",Arial,sans-serif';
+  const color=d.color||PAL[0];
+  $('doc').innerHTML=`<div class="r L${L}" style="--qc:${esc(color)};--qt:${tint(color,.1)};--qf:${esc(font)}">
+    ${head}
+    <div class="g2"><div class="sec"><h4>1. Promoter Details</h4>${promoter}</div><div class="sec"><h4>2. Unit Details</h4>${unit}</div></div>
+    <div class="g2"><div class="sec"><h4>3. Machinery &amp; Equipment</h4>${mach}</div>
+      <div><div class="sec"><h4>4. Cost of Project</h4>${cost}</div><div class="sec sec2"><h4>5. Means of Finance</h4>${fin}</div></div></div>
+    <div class="g2"><div class="sec"><h4>6. Profitability (Year 1)</h4>${pl}</div><div class="sec"><h4>7. Loan Repayment &amp; Viability</h4>${loan}${tiles}</div></div>
+    <div class="wd"><span>Total Project Cost: Rupees ${words(c.total)} Only</span><b>₹ ${rs(c.total)}</b></div>
+    <p class="decl">I hereby declare that the information given above is true to the best of my knowledge and belief, and the project will be implemented as per the details furnished.</p>
+    <div class="spacer"></div>
+    <div class="ft"><div class="l">Place: ${esc(S.meta.place)}<br>Date: ${fmtDate(S.meta.date)}${S.prep?`<br><span class="small">Report prepared by: ${esc(S.prep)}</span>`:''}</div>
+      <div class="s"><div class="line">Signature of Applicant<br><b>${esc(a.name)}</b></div></div></div>
+  </div>`;
+  $('barTot').textContent='₹'+rs(c.total);
+  renderStats(c);
+  fit();
+}
+function fit(){const w=$('pwrap').clientWidth;if(!w)return;const s=w/794;const d=$('doc');d.style.transform='scale('+s+')';const h=d.firstElementChild?d.firstElementChild.offsetHeight:0;$('pwrap').style.height=(h*s)+'px';
+  const over=h>1124;$('pageNote').textContent=over?'एक पेज से लंबी हो गई, कुछ मशीनें मिलाएं या नाम छोटे करें':'जैसा PDF में दिखेगा (A4, एक पेज)';$('pageNote').className=over?'over':''}
+window.addEventListener('resize',fit);
+
+function renderStats(c){
+  const d=c.dscr;const cls=d==null?'':(d<1.25?'bad':d>=1.5?'good':'');
+  $('stats').innerHTML=`<div class="stat ${c.np<0?'bad':'good'}"><span>शुद्ध मुनाफा / साल</span><b>₹${c.np<0?'−':''}${rs(Math.abs(c.np))}</b></div>
+    <div class="stat ${cls}"><span>DSCR</span><b>${pct(d,2)}</b></div>
+    <div class="stat"><span>ब्रेक-ईवन</span><b>${c.bep==null?'—':pct(c.bep)+'%'}</b></div>
+    <div class="stat"><span>EMI / महीना</span><b>₹${rs(c.am.emi)}</b></div>`;
+  const msgs=[];
+  if(c.np<0)msgs.push('खर्च बिक्री से ज़्यादा है, बिक्री बढ़ाएं या खर्च कम करें।');
+  else if(d!=null&&d<1.25)msgs.push('DSCR 1.25 से कम है। बैंक आमतौर पर 1.5 या उससे ज़्यादा चाहते हैं।');
+  if(S.unit.scheme==='PMEGP'){const lim=S.unit.type==='S'?2000000:5000000;if(c.total>lim)msgs.push('PMEGP में '+(S.unit.type==='S'?'सर्विस':'मैन्युफैक्चरिंग')+' की सीमा ₹'+rs(lim)+' है, लागत उससे ज़्यादा है।')}
+  if(S.unit.scheme==='CM YUVA'&&c.total>500000)msgs.push('CM YUVA में पहले चरण की सीमा ₹5 लाख है, लागत उससे ज़्यादा है।');
+  if(S.unit.scheme==='PM Mudra Yojana'&&c.loan>2000000)msgs.push('मुद्रा लोन ₹20 लाख तक ही मिलता है।');
+  $('plNote').hidden=!msgs.length;$('plNote').textContent=msgs.join(' ');
+}
+
+/* ---------- form ---------- */
+function getPath(p){return p.split('.').reduce((o,k)=>o==null?o:o[k],S)}
+function setPath(p,v){const ks=p.split('.');let o=S;for(let i=0;i<ks.length-1;i++)o=o[ks[i]];o[ks[ks.length-1]]=v}
+function fillFields(){ROOT.querySelectorAll('[data-k]').forEach(el=>{const v=getPath(el.dataset.k);if(el.type==='checkbox')el.checked=!!v;else el.value=v==null?'':v});$('schemeNote').textContent=schemeText()}
+let raf=0;function changed(){if(raf)return;raf=requestAnimationFrame(()=>{raf=0;renderDoc();LS.set('pr_draft',S)})}
+ROOT.querySelectorAll('[data-k]').forEach(el=>{el.addEventListener(el.type==='checkbox'||el.tagName==='SELECT'?'change':'input',()=>{
+  setPath(el.dataset.k,el.type==='checkbox'?el.checked:el.value);
+  if(el.dataset.k==='unit.scheme'){if(S.unit.scheme==='CM YUVA'){S.fin.rate=0;S.fin.years=4}else if(num(S.fin.rate)===0){S.fin.rate=11;S.fin.years=5}$('f_rate').value=S.fin.rate;$('f_years').value=S.fin.years}
+  if(['unit.scheme','unit.area','unit.aspirational','app.cat','app.special'].includes(el.dataset.k)){const r=schemeRates();S.fin.own=r.own;S.fin.sub=r.sub;$('f_own').value=r.own;$('f_sub').value=r.sub;$('schemeNote').textContent=schemeText();toast('मार्जिन मनी '+r.own+'%, सब्सिडी '+r.sub+'% ('+catLabel(S.app)+', '+S.unit.scheme+')')}
+  if(el.dataset.k==='prep')LS.set('pr_prep',el.value);
+  changed()})});
+$('estimate').addEventListener('click',()=>{const prev=JSON.stringify(S.pl);estimate();fillFields();changed();toast('लागत के हिसाब से अंदाज़ा भर दिया',()=>{S.pl=JSON.parse(prev);fillFields();changed()})});
+
+/* business search */
+let sec='';
+const norm=x=>String(x||'').toLowerCase().replace(/[़्]/g,'').replace(/\s+/g,' ').trim();
+const IDX=BIZ.map(b=>norm(b[2]+' '+b[3]+' '+CATS[b[1]][0]+' '+CATS[b[1]][1]+' '+(b[0]==='M'?'manufacturing मैन्युफैक्चरिंग':'service सर्विस')+' '+b[4].map(x=>x[0]).join(' ')));
+const SYNN={};Object.keys(SYN).forEach(k=>SYNN[norm(k)]=SYN[k]);
+const NAMES=BIZ.map(b=>norm(b[2]+' '+b[3]));
+$('bizCat').innerHTML='<option value="">सभी कैटेगरी</option>'+Object.keys(CATS).map(c=>`<option value="${c}">${CATS[c][1]}</option>`).join('');
+$('bizCount').textContent=BIZ.length+' बिज़नेस';
+function renderPicked(){const b=S.tpl>=0?BIZ[S.tpl]:null;$('picked').innerHTML=b?'चुना गया: <b>'+esc(b[3])+'</b> <span style="color:var(--muted)">('+esc(b[2])+')</span>':'अपना बिज़नेस: <b>'+esc(S.unit.activity||'—')+'</b>'}
+function renderResults(){
+  const q=norm($('bizQ').value).split(' ').filter(Boolean);const cat=$('bizCat').value;
+  const hit=(txt,w)=>txt.includes(w)||(SYNN[w]||[]).some(x=>txt.includes(x));
+  const sc=[];BIZ.forEach((b,i)=>{if(sec&&b[0]!==sec)return;if(cat&&b[1]!==cat)return;if(!q.every(w=>hit(IDX[i],w)))return;
+    const nm=NAMES[i];let s=q.every(w=>hit(nm,w))?0:4;if(q.length&&!q.every(w=>(' '+nm).includes(' '+w)))s+=1;sc.push([s,i])});
+  sc.sort((x,y)=>x[0]-y[0]||x[1]-y[1]);const hits=sc.map(x=>x[1]);const LIM=60;
+  $('results').innerHTML=hits.length?hits.slice(0,LIM).map(i=>{const b=BIZ[i];const c=CATS[b[1]];
+    return `<button class="res" data-b="${i}" aria-current="${S.tpl===i}"><i style="background:${c[2]}"></i><div><b>${esc(b[3])}</b><span>${esc(b[2])} · ${esc(c[1])}</span></div><em>${b[0]==='M'?'मैन्यु.':'सर्विस'} · ${b[4].length} मशीन</em></button>`}).join('')+(hits.length>LIM?`<div class="more">और ${hits.length-LIM} बिज़नेस हैं, खोज को और साफ़ लिखें</div>`:'')
+    :'<p class="empty">यह बिज़नेस लिस्ट में नहीं मिला। कोई मिलता-जुलता चुनकर मशीनें और "काम (Activity)" बदल लें।</p>';
+}
+$('bizQ').addEventListener('input',renderResults);
+$('bizCat').addEventListener('change',renderResults);
+ROOT.querySelectorAll('[data-sec]').forEach(b=>b.addEventListener('click',()=>{sec=b.dataset.sec;ROOT.querySelectorAll('[data-sec]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderResults()}));
+$('results').addEventListener('click',e=>{const r=e.target.closest('[data-b]');if(!r)return;const i=+r.dataset.b;if(i===S.tpl)return;
+  const prev=JSON.stringify(S);const b=BIZ[i];
+  S.tpl=i;S.items=bizItems(i);S.cost=bizCosts(i);S.unit.activity=b[2];S.unit.type=b[0];
+  {const rr=schemeRates();S.fin.own=rr.own;S.fin.sub=rr.sub}
+  estimate();renderAll();toast(b[3]+' की मशीनें और आंकड़े भर दिए',()=>{S=JSON.parse(prev);renderAll()})});
+
+function renderItems(){
+  $('itemCount').textContent=S.items.length+' मशीन';
+  $('items').innerHTML=S.items.map((i,k)=>`<div class="item" data-i="${k}">
+    <div class="n">${k+1}</div><div class="body">
+      <input id="r_it_name_${k}" data-f="name" placeholder="मशीन / उपकरण का नाम" value="${esc(i.name)}">
+      <div class="nums">
+        <label>मात्रा<input id="r_it_qty_${k}" data-f="qty" type="number" inputmode="decimal" value="${esc(i.qty)}"></label>
+        <label>रेट (₹)<input id="r_it_rate_${k}" data-f="rate" type="number" inputmode="decimal" value="${esc(i.rate)}"></label>
+        <label>GST %<input id="r_it_gst_${k}" data-f="gst" type="number" inputmode="decimal" value="${esc(i.gst)}"></label>
+        <span class="amt" id="r_amt_${k}"></span>
+      </div>
+      <button class="del" data-del="${k}">हटाएं</button>
+    </div></div>`).join('');
+  updAmts();
+}
+function updAmts(){S.items.forEach((i,k)=>{const el=$('amt_'+k);if(el)el.textContent='₹'+rs(num(i.qty)*num(i.rate)*(S.fin.gstOn?1+num(i.gst)/100:1))})}
+$('f_gst').addEventListener('change',updAmts);
+$('items').addEventListener('input',e=>{const f=e.target.dataset.f;if(!f)return;const k=+e.target.closest('[data-i]').dataset.i;S.items[k][f]=e.target.value;updAmts();changed()});
+$('items').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(!d)return;const k=+d.dataset.del;const gone=S.items.splice(k,1)[0];renderItems();changed();toast('मशीन हटाई',()=>{S.items.splice(k,0,gone);renderItems();changed()})});
+$('addItem').addEventListener('click',()=>{const last=S.items[S.items.length-1];S.items.push({name:'',qty:1,rate:0,gst:last?last.gst:18});renderItems();changed();$('it_name_'+(S.items.length-1)).focus()});
+
+/* design */
+function renderDesign(){
+  const d=S.design||(S.design={layout:0,color:PAL[0],font:0});
+  $('dLayouts').innerHTML=LAYOUTS.map((l,k)=>`<button class="tpl" data-l="${k}" aria-pressed="${k===(d.layout|0)}">${l}</button>`).join('');
+  $('dColors').innerHTML=PAL.map(c=>`<button data-c="${c}" style="background:${c}" aria-label="रंग ${c}" aria-pressed="${c===d.color}"></button>`).join('');
+  $('dFont').innerHTML=FONTS.map((f,k)=>`<option value="${k}"${k===(d.font|0)?' selected':''}>${f[0]}</option>`).join('');
+}
+function setDesign(p){S.design=Object.assign({},S.design,p);LS.set('pr_design',S.design);renderDesign();changed()}
+$('dLayouts').addEventListener('click',e=>{const b=e.target.closest('[data-l]');if(b)setDesign({layout:+b.dataset.l})});
+$('dColors').addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b)setDesign({color:b.dataset.c})});
+$('dFont').addEventListener('change',e=>setDesign({font:+e.target.value}));
+
+/* history */
+function renderHist(){
+  if(!history.length){$('hist').innerHTML='<p class="empty">अभी कोई रिपोर्ट सेव नहीं है। नीचे "सेव" दबाएं।</p>';return}
+  $('hist').innerHTML=history.map((h,k)=>`<div class="h"><div><b>${esc(h.s.app.name||'—')} · ${esc(h.s.unit.activity||'')}</b><span>${fmtDate(h.s.meta.date)} · ₹${rs(h.total)} · ${esc(h.s.unit.scheme)}</span></div><div class="row"><button class="btn" data-open="${k}">खोलें</button><button class="btn ghost" data-rm="${k}" aria-label="हटाएं">×</button></div></div>`).join('');
+}
+$('hist').addEventListener('click',e=>{const o=e.target.closest('[data-open]'),r=e.target.closest('[data-rm]');
+  if(o){S=fixApp(JSON.parse(JSON.stringify(history[+o.dataset.open].s)));renderAll();toast('रिपोर्ट खुली');scrollTo({top:0})}
+  if(r){const k=+r.dataset.rm;const gone=history.splice(k,1)[0];LS.set('pr_hist',history);renderHist();toast('हटाई',()=>{history.splice(k,0,gone);LS.set('pr_hist',history);renderHist()})}});
+$('saveR').addEventListener('click',()=>{const c=calc();if(!S.id)S.id='r'+Date.now();const copy=JSON.parse(JSON.stringify(S));
+  const i=history.findIndex(h=>h.s.id===S.id);
+  if(i>=0)history[i]={s:copy,total:c.total};else history.unshift({s:copy,total:c.total});
+  history=history.slice(0,50);LS.set('pr_hist',history)?toast('रिपोर्ट सेव हुई'):toast('इस ब्राउज़र में सेव नहीं हो पाया');LS.set('pr_draft',S);renderHist()});
+$('newR').addEventListener('click',()=>{const prev=JSON.stringify(S);const keep={unit:S.unit,fin:S.fin};
+  S=fresh(S.tpl==null||!BIZ[S.tpl]?DEF:S.tpl);S.app={name:'',father:'',cat:'General',special:'',qual:'',addr:'',phone:'',exp:''};
+  S.unit=Object.assign({},keep.unit,{name:'',addr:''});S.fin=Object.assign({},keep.fin);const r=schemeRates();S.fin.own=r.own;S.fin.sub=r.sub;estimate();
+  renderAll();toast('नई रिपोर्ट',()=>{S=JSON.parse(prev);renderAll()})});
+
+/* ready-made reports, filled from a customer's quotation */
+const PRESETS=[{id:'p_pravesh_flour',label:'Pravesh Kumar · Mini Flour Mill',sub:'Astro Light कोटेशन ALEI/2026-27/012 · CM YUVA · SC',biz:/mini flour mill/i,
+  s:{app:{name:'Pravesh Kumar',father:'',cat:'SC',special:'',qual:'',addr:'House No. 116, Village Muiuddinpur, Pilua\nEtah, Uttar Pradesh',phone:'9719435285',exp:''},
+    unit:{name:'',activity:'Mini Flour Mill (Atta Chakki)',type:'M',constitution:'Proprietorship',area:'Rural',scheme:'CM YUVA',addr:'Village Muiuddinpur, Pilua, Etah (U.P.)',bank:'',aspirational:false},
+    items:[{name:'Atta Chakki (Pulverizer, 20 in stone, 15 HP)',qty:1,rate:35000,gst:18},{name:'Grain Cleaner (Destoner)',qty:1,rate:12000,gst:18},{name:'Pouch Packing Machine (Semi-automatic, 1-10 kg)',qty:1,rate:25000,gst:18},{name:'Weighing Scale (300 kg platform)',qty:1,rate:10000,gst:18},{name:'Solar Panel (32 panels, 20 kV)',qty:1,rate:300000,gst:18}],
+    cost:{building:0,furniture:0,preop:0,other:0,wc:45000},
+    fin:{gstOn:true,own:10,sub:10,rate:0,years:4},
+    pl:{sales:900000,rm:60,staff:1,salary:8000,rent:2000,elec:1000,misc:2000},
+    meta:{date:'2026-10-05',place:'Etah'}}}];
+function renderPresets(){$('presets').innerHTML=PRESETS.map((p,k)=>`<div class="h"><div><b>${esc(p.label)}</b><span>${esc(p.sub)}</span></div><div class="row"><button class="btn primary" data-pre="${k}">खोलें</button></div></div>`).join('')}
+$('presets').addEventListener('click',e=>{const b=e.target.closest('[data-pre]');if(!b)return;const p=PRESETS[+b.dataset.pre];const prev=JSON.stringify(S);
+  S=Object.assign(JSON.parse(JSON.stringify(p.s)),{id:p.id,tpl:BIZ.findIndex(x=>p.biz.test(x[2])),prep:LS.get('pr_prep',''),design:LS.get('pr_design',{layout:0,color:'#1d6b4a',font:0})});
+  renderAll();toast(p.label+' की रिपोर्ट खुल गई',()=>{S=JSON.parse(prev);renderAll()})});
+renderPresets();
+
+/* export */
+async function shot(){
+  const holder=document.createElement('div');holder.style.cssText='position:fixed;left:-10000px;top:0;width:794px';
+  holder.innerHTML=$('doc').innerHTML;document.body.appendChild(holder);
+  try{if(document.fonts&&document.fonts.ready)await document.fonts.ready;return await html2canvas(holder.firstElementChild,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false})}
+  finally{holder.remove()}
+}
+function fname(ext){return ('Project_Report_'+(S.app.name||'applicant')+'_'+(S.unit.activity||'')).replace(/[\/\\:*?"<>|]+/g,'-').replace(/\s+/g,'_').slice(0,120)+'.'+ext}
+async function save(ext,maker,btn,mode){
+  if(typeof html2canvas==='undefined'||!window.jspdf){toast('PDF टूल लोड नहीं हुआ, इंटरनेट चालू करके ऐप दोबारा खोलें');return}
+  const label=btn.textContent;btn.disabled=true;btn.textContent='बन रहा है…';
+  try{let data=await maker();if(!(data instanceof Blob))data=new Blob([data],{type:ext==='pdf'?'application/pdf':'image/png'});await QM.deliver(data,fname(ext),mode)}
+  catch(e){toast('फ़ाइल नहीं बन पाई: '+((e&&e.message)||'error'))}
+  finally{btn.disabled=false;btn.textContent=label}
+}
+async function makePdf(){
+  const cv=await shot();const {jsPDF}=window.jspdf;const pdf=new jsPDF({unit:'mm',format:'a4',compress:true});
+  const pw=210,ph=297,pxPerPage=Math.floor(cv.width*ph/pw);let y=0,first=true;
+  if(cv.height>pxPerPage&&cv.height<=pxPerPage*1.12){const w=pw*pxPerPage/cv.height;pdf.addImage(cv.toDataURL('image/jpeg',0.92),'JPEG',(pw-w)/2,0,w,ph);return pdf.output('blob')}
+  while(y<cv.height-4){const h=Math.min(pxPerPage,cv.height-y);const part=document.createElement('canvas');part.width=cv.width;part.height=h;
+    const g=part.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,part.width,h);g.drawImage(cv,0,y,cv.width,h,0,0,cv.width,h);
+    if(!first)pdf.addPage();pdf.addImage(part.toDataURL('image/jpeg',0.92),'JPEG',0,0,pw,h*pw/cv.width);first=false;y+=pxPerPage}
+  return pdf.output('blob');
+}
+$('dlPdf').addEventListener('click',e=>save('pdf',makePdf,e.currentTarget,'save'));
+$('shR').addEventListener('click',e=>save('pdf',makePdf,e.currentTarget,'share'));
+$('dlImg').addEventListener('click',e=>save('png',async()=>{const cv=await shot();return await new Promise(r=>cv.toBlob(r,'image/png'))},e.currentTarget,'save'));
+
+/* fill from a quotation (current draft or a saved one) */
+function quoteRows(){
+  const list=QM.quotes();
+  if(!list.length)return '<p class="empty">कोटेशन टैब में पहले कोटेशन बनाएं।</p>';
+  return list.map((x,k)=>`<div class="h"><div><b>${esc(x.s.cust.name||'—')}${x.cur?' <span style="color:var(--accent);font-weight:600">(अभी वाली)</span>':''}</b><span>${esc(x.s.meta.no)} · ${fmtDate(x.s.meta.date)} · ₹${rs(x.total)} · ${x.s.items.length} आइटम</span></div><div class="row"><button class="btn primary" data-fq="${k}">भरें</button></div></div>`).join('');
+}
+function renderFromQ(){
+  $('fromQ').innerHTML=quoteRows();
+  const q=S.qref;
+  $('linked').innerHTML=q&&q.no?`<span>जुड़ी कोटेशन: <b>${esc(q.no)}</b> (${esc(q.seller||'')})</span><button class="btn ghost" id="r_unlink">हटाएं</button>`:'';
+}
+function fillFromQuote(x){
+  const qs=x.s;const prev=JSON.stringify(S);
+  const sub=qs.items.reduce((t,i)=>t+num(i.qty)*num(i.rate),0);
+  const f=sub?Math.max(0,sub-Math.min(num(qs.opts.discount),sub))/sub:1;
+  const gstOn=!!qs.opts.gstOn;
+  S.items=qs.items.filter(i=>String(i.name||'').trim()||num(i.rate)).map(i=>({name:String(i.name||'').trim()+(i.desc?' ('+i.desc+')':''),qty:num(i.qty)||1,rate:Math.round(num(i.rate)*f*100)/100,gst:gstOn?num(i.gst):0}));
+  if(num(qs.opts.freight))S.items.push({name:'Freight / Installation',qty:1,rate:num(qs.opts.freight),gst:0});
+  S.fin.gstOn=gstOn;
+  const c=qs.cust||{};
+  if(c.name&&String(c.name).trim()!==String(S.app.name||'').trim()){S.app=Object.assign({},S.app,{name:c.name,father:'',qual:'',exp:'',addr:c.addr||'',phone:c.phone||''});S.unit=Object.assign({},S.unit,{name:'',addr:''})}
+  else if(c.name){S.app.addr=c.addr||S.app.addr;S.app.phone=c.phone||S.app.phone}
+  const m=/^b(\d+)$/.exec(qs.tpl||'');
+  if(m&&BIZ[+m[1]]){const i=+m[1];S.tpl=i;S.unit.activity=BIZ[i][2];S.unit.type=BIZ[i][0]}
+  else{S.tpl=-1;if(qs.meta.subject)S.unit.activity=String(qs.meta.subject).replace(/^Quotation for\s*/i,'')}
+  let mach=0;S.items.forEach(i=>mach+=num(i.qty)*num(i.rate)*(S.fin.gstOn?1+num(i.gst)/100:1));
+  S.cost=Object.assign({},S.cost,{wc:Math.max(50000,r1k(mach*.25,10000))});
+  S.qref={seller:(qs.seller&&qs.seller.name)||'',no:qs.meta.no||'',date:qs.meta.date||''};
+  S.id='q_'+(qs.meta.no||Date.now());S.meta=Object.assign({},S.meta,{date:today()});
+  {const rr=schemeRates();S.fin.own=rr.own;S.fin.sub=rr.sub}
+  estimate();renderAll();
+  toast('कोटेशन '+(qs.meta.no||'')+' से भर दिया। कमाई-खर्च अंदाज़े हैं, असली आंकड़े डालें।',()=>{S=JSON.parse(prev);renderAll()});
+}
+$('fromQ').addEventListener('click',e=>{const b=e.target.closest('[data-fq]');if(!b)return;const x=QM.quotes()[+b.dataset.fq];if(x){fillFromQuote(x);scrollTo({top:0})}});
+$('linked').addEventListener('click',e=>{if(e.target.id!=='r_unlink')return;const q=S.qref;S.qref=null;renderFromQ();changed();toast('कोटेशन का नंबर रिपोर्ट से हटाया',()=>{S.qref=q;renderFromQ();changed()})});
+
+/* view switch + toast */
+let tt=0;function toast(msg,undo){let t=document.querySelector('.toast');if(t)t.remove();t=document.createElement('div');t.className='toast';t.setAttribute('role','status');
+  const s=document.createElement('span');s.textContent=msg;t.appendChild(s);
+  if(undo){const b=document.createElement('button');b.textContent='वापस करें';b.onclick=()=>{undo();t.remove()};t.appendChild(b)}
+  document.body.appendChild(t);clearTimeout(tt);tt=setTimeout(()=>t.remove(),undo?6000:2600)}
+
+function renderAll(){renderFromQ();renderPicked();renderResults();fillFields();renderItems();renderDesign();renderHist();renderDoc();LS.set('pr_draft',S)}
+renderAll();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+setTimeout(fit,300);
+QM.fillFromQuote=fillFromQuote;QM.refreshR=renderFromQ;
+/* mode tabs */
+function setMode(m){document.body.dataset.mode=m;document.querySelectorAll('.modes [data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+  try{localStorage.setItem('qm_mode',m)}catch(e){}if(m==='r')renderFromQ();requestAnimationFrame(()=>window.dispatchEvent(new Event('resize')))}
+document.querySelectorAll('.modes [data-mode]').forEach(b=>b.addEventListener('click',()=>{if(document.body.dataset.mode!==b.dataset.mode){setMode(b.dataset.mode);scrollTo({top:0})}}));
+QM.setMode=setMode;
+let m0='q';try{m0=localStorage.getItem('qm_mode')==='r'?'r':'q'}catch(e){}
+setMode(m0);
+})();
 </script>
 </body>
 </html>

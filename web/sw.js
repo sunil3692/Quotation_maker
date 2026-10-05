@@ -1,5 +1,5 @@
 // Offline cache for the web version (GitHub Pages). The Android app does not use this.
-const CACHE = 'qm-v1';
+const CACHE = 'qm-v2';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png',
   'lib/html2canvas.min.js', 'lib/jspdf.umd.min.js', 'lib/fonts.css'];
 
